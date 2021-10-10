@@ -1,14 +1,19 @@
 #cards {
   display: flex;
+  flex-wrap: wrap;
+  width: 85%;
+  margin: 0 auto;
 }
 .card {
   /* 卡片在容器裡的排版 - 一行13張牌共4行*/
   /* 由於我們希望 52 張牌能以 4*13 排列，每一橫列要有 13 張卡片，100 / 13 = 7.7，這裡暫時抓 7% 的比例，剩餘一點空隙就當成 margin。 */
-  flex: 7% 0 1; /* 每個 item 分配容器寬度  vw: view width; vh: view height*/
+  flex: 7% 1 1; /* 每個 item 分配容器寬度  vw: view width; vh: view height*/
   /* flex-basis flex-grow flex-shrink */
 
   height: 8vw; /* 依視窗的寬度等比例變化 */
   border: 2px solid hsl(0, 0%, 88%);
+  margin: 2px;
+  box-sizing: border-box; /* 設定 box-sizing*/
 
   /* 卡片內部元素的排版 - 上下兩個數字加中間圖片 */
   display: flex;
@@ -25,4 +30,69 @@
 }
 .card p:last-child {
   transform: rotate(180deg);
+}
+.back {
+  background: url("https://assets-lighthouse.alphacamp.co/uploads/image/file/9222/ExportedContentImage_00.png");
+  background-size: cover;
+}
+.paired {
+  background-color: #dae0e3;
+}
+
+#header {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 85%;
+}
+#header .title {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+#header .title img {
+  max-width: 3em;
+}
+#header .title h2 {
+  padding-left: 0.5em;
+}
+#header .score {
+  margin: 0;
+  color: #6c90ac;
+}
+#header .tried {
+  margin-top: 0;
+}
+.wrong {
+  animation-name: wrongAnimation;
+  animation-duration: 0.2s;
+  animation-iteration-count: 5;
+}
+@keyframes wrongAnimation {
+  /* 當動畫發生時，該元素要逐漸加上黃色邊框 */
+  to {
+    border: 2px solid #ffd54f;
+  }
+}
+
+/** Game finished **/
+.completed {
+  position: absolute;
+  z-index: 999;
+  top: 33vh;
+  background-color: RGBA(232, 246, 254, 0.8);
+  width: 100vw;
+  padding: 50px 0;
+}
+.completed > p {
+  font-size: 1.5em;
+  color: black;
+  text-align: center;
+  margin: 0;
+}
+.completed > p:first-child {
+  font-size: 3em;
+  font-weight: 700;
+  color: #758d9a;
 }
